@@ -1,7 +1,9 @@
-import ReactDOM from 'react-dom/client';
+//this file is the first one to be executed once the page is loaded (localhost:3000)
 
-import './index.css';
-import App from './App';
+import ReactDOM from "react-dom/client";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import "./index.css";
+import App from "./App";
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<App />);
