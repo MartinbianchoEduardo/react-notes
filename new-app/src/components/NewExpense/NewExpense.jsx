@@ -53,7 +53,9 @@ const NewExpense = () => {
             <label>Title</label>
             <input
               type="text"
-              value={enteredTitle} //value field is here to reset the value when changing state without loosing the value entered in the input
+              value={enteredTitle} //value field is here to reset the value
+              //when changing state without loosing the value entered in the input
+              //his is called two way binding
               onChange={titleChangeHandler}
             />
           </div>
