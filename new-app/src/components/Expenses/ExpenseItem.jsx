@@ -16,8 +16,7 @@ function ExpenseItem(props) {
   //title is a pointer to props.title
 
   const clickHandler = () => {
-    //passing the new value as parameter
-    setTitle("new title");
+    setTitle("new title"); //passing the new value as parameter
     //when calling setTitle (the update function)
     //we tell react that a new value is being assigned to this state
     //and this will make react call the component function again
