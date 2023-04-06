@@ -2,6 +2,14 @@ import { useState } from "react";
 import "./ExpenseForm.css";
 
 function ExpenseForm(props) {
+  //IMPORTANT REMEMBER
+  //when your state update depends on the previous state
+  //pass in the previous state as an argument in a function
+  //   setUserInput((prevState) => {
+  //     return {...prevState, enteredTitle: event.target.value}
+  //   })
+  //to ensure it always operate in the actual state
+
   const [enteredTitle, setEnteredTitle] = useState("");
 
   //the onChange gives the (event)
@@ -25,11 +33,17 @@ function ExpenseForm(props) {
   const submitHandler = (event) => {
     event.preventDefault();
 
-    // const expenseData = {
-    //   title: enteredTitle,
-    //   amount: enteredAmount,
-    //   date: new Date(enteredDate),
-    // };
+    const expenseData = {
+      title: enteredTitle,
+      amount: enteredAmount,
+      date: new Date(enteredDate),
+    };
+
+    // COMMUNICATE WITH PARENT COMPONENT
+    // the function passed from the parent is called here
+    // onSaveExpenseData will save the entered data into an object in order to pass it to the parent component
+    // execute a function created in a parent component inside a child component by doing this
+    props.onSaveExpenseData(expenseData);
 
     setEnteredTitle("");
     setEnteredAmount("");
