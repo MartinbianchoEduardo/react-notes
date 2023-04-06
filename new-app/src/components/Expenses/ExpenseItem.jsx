@@ -15,11 +15,15 @@ function ExpenseItem(props) {
   const [title, setTitle] = useState(props.title);
   //title is a pointer to props.title
 
-  const clickHandler = () => {
+  const newTitleClickHandler = () => {
     setTitle("new title"); //passing the new value as parameter
     //when calling setTitle (the update function)
     //we tell react that a new value is being assigned to this state
     //and this will make react call the component function again
+  };
+
+  const resetTitleClickHandler = () => {
+    setTitle(props.title);
   };
 
   return (
@@ -29,7 +33,8 @@ function ExpenseItem(props) {
         <h2>{title}</h2>
         <div className="expense-item__price">${props.amount}</div>
       </div>
-      <button onClick={clickHandler}>Change title</button>
+      <button onClick={newTitleClickHandler}>Change title</button>
+      <button onClick={resetTitleClickHandler}>reset title</button>
     </Card>
   );
 }
