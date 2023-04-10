@@ -1,36 +1,41 @@
+import { useState } from "react";
 import Expenses from "./components/Expenses/Expenses";
 import NewExpense from "./components/NewExpense/NewExpense";
 
+const initialExpenses = [
+  {
+    id: "e1",
+    title: "car insurance",
+    amount: 294.78,
+    date: new Date(),
+  },
+  {
+    id: "e2",
+    title: "car oil",
+    amount: 120.99,
+    date: new Date(),
+  },
+  {
+    id: "e3",
+    title: "car wash",
+    amount: 94.78,
+    date: new Date(),
+  },
+  {
+    id: "e4",
+    title: "car ",
+    amount: 1094.78,
+    date: new Date(),
+  },
+];
+
 function App() {
-  const expenses = [
-    {
-      id: "e1",
-      title: "car insurance",
-      amount: 294.78,
-      date: new Date(),
-    },
-    {
-      id: "e2",
-      title: "car oil",
-      amount: 120.99,
-      date: new Date(),
-    },
-    {
-      id: "e3",
-      title: "car wash",
-      amount: 94.78,
-      date: new Date(),
-    },
-    {
-      id: "e4",
-      title: "car ",
-      amount: 1094.78,
-      date: new Date(),
-    },
-  ];
+  const [expenses, setExpenses] = useState(initialExpenses);
 
   const addExpenseHandler = (expense) => {
-    console.log("in App.js: ", expense);
+    setExpenses((prevExpenses) => {
+      return [expense, ...prevExpenses];
+    });
   };
   return (
     <div>
