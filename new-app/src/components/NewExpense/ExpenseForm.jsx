@@ -11,6 +11,8 @@ function ExpenseForm(props) {
   //to ensure it always operate in the actual state
 
   const [enteredTitle, setEnteredTitle] = useState("");
+  const [enteredAmount, setEnteredAmount] = useState("");
+  const [enteredDate, setEnteredDate] = useState("");
 
   //the onChange gives the (event)
   const titleChangeHandler = (event) => {
@@ -18,13 +20,9 @@ function ExpenseForm(props) {
     //event.target.value is the value passed inside the input in the form
   };
 
-  const [enteredAmount, setEnteredAmount] = useState("");
-
   const amountChangeHandler = (event) => {
     setEnteredAmount(event.target.value);
   };
-
-  const [enteredDate, setEnteredDate] = useState("");
 
   const dateChangeHandler = (event) => {
     setEnteredDate(event.target.value);
@@ -58,7 +56,7 @@ function ExpenseForm(props) {
             type="text"
             value={enteredTitle} //value field is here to reset the value
             //when changing state without loosing the value entered in the input
-            //his is called two way binding
+            //this is called two way binding
             onChange={titleChangeHandler}
           />
         </div>

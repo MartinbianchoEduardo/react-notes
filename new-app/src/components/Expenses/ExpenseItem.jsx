@@ -1,4 +1,4 @@
-import { useState } from "react";
+// import { useState } from "react";
 // the useState function allows to define values as state
 // any change in these value will make the component function be called again
 // remember all components are functions
@@ -12,7 +12,6 @@ function ExpenseItem(props) {
   //the first element is the current state value itself (the 'variable')
   //the second element is the update function
   //using destructuring
-  const [title, setTitle] = useState(props.title);
   //title is a pointer to props.title
 
   // const newTitleClickHandler = () => {
@@ -30,7 +29,7 @@ function ExpenseItem(props) {
     <Card className="expense-item">
       <ExpenseDate date={props.date} />
       <div className="expense-item__description">
-        <h2>{title}</h2>
+        <h2>{props.title}</h2>
         <div className="expense-item__price">${props.amount}</div>
       </div>
     </Card>
