@@ -1,4 +1,4 @@
-import classes from "./Inpuot.module.css";
+import classes from "./Input.module.css";
 
 const Input = (props) => {
   return (
