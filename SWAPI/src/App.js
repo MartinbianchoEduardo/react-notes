@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useCallback } from "react";
 
 import MoviesList from "./components/MoviesList";
+import AddMovie from "./components/AddMovie";
+import "./components/AddMovie.module.css";
 import "./App.css";
 
 function App() {
@@ -12,7 +14,9 @@ function App() {
     setError(null);
     setIsLoading(true);
     try {
-      const res = await fetch("https://swapi.dev/api/films");
+      const res = await fetch(
+        "https://react-notes-6e874-default-rtdb.firebaseio.com/movies.json"
+      );
       if (!res.ok) {
         throw new Error("something went wrong");
       }
@@ -38,7 +42,23 @@ function App() {
     fetchMoviesHandler();
   }, [fetchMoviesHandler]);
 
+  async function addMovieHandler(movie) {
+    const response = await fetch(
+      "https://react-notes-6e874-default-rtdb.firebaseio.com/movies.json",
+      {
+        method: "POST",
+        body: JSON.stringify(movie),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const data = await response.json();
+    console.log(data);
+  }
+
   let content = <p>found no movies</p>;
+
   if (movies.length > 0) {
     content = <MoviesList movies={movies} />;
   }
@@ -51,6 +71,9 @@ function App() {
 
   return (
     <React.Fragment>
+      <section>
+        <AddMovie onAddMovie={addMovieHandler} />
+      </section>
       <section>
         <button onClick={fetchMoviesHandler}>Fetch Movies</button>
       </section>
