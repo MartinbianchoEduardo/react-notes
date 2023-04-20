@@ -12,6 +12,9 @@ const MainNav = (props) => {
           <li>
             <Link to="/products">Products</Link>
           </li>
+          <li>
+            <Link to="/adasd">Error</Link>
+          </li>
         </ul>
       </nav>
     </header>
