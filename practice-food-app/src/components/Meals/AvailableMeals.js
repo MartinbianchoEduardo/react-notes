@@ -32,6 +32,8 @@ const DUMMY_MEALS = [
 
 const AvailableMeals = () => {
   const [meals, setMeals] = useState([]);
+  const [isLoading, setIsLoading] = useState(true); //true because it always starts loading
+  const [httpError, setHttpError] = useState("");
 
   //useEffect so this is called every time the component is loaded
   useEffect(() => {
@@ -40,6 +42,11 @@ const AvailableMeals = () => {
     //this cleanup function must run synchronously\
     const fetchMeals = async () => {
       const response = await fetch("backend-server-url");
+
+      if (!response.ok) {
+        throw new Error("something went wrong");
+      }
+
       const data = await response.json();
 
       //transform objects into an array
@@ -53,13 +60,32 @@ const AvailableMeals = () => {
           price: data[key].price,
         });
       }
-
       setMeals(loadedMeals);
+      setIsLoading(false);
     };
 
     //so this is fine
-    fetchMeals();
+    fetchMeals().catch((error) => {
+      setIsLoading(false);
+      setHttpError(error.message);
+    });
   }, []);
+
+  if (isLoading) {
+    return (
+      <section className={classes.MealsLoading}>
+        <p>loading...</p>
+      </section>
+    );
+  }
+
+  if (httpError) {
+    return (
+      <section className={classes.MealsError}>
+        <p>error: {httpError}</p>
+      </section>
+    );
+  }
 
   const mealsList = meals.map((meal) => (
     <MealItem
