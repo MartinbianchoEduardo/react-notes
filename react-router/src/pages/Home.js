@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import MainNav from "../components/MainNav";
 
 const HomePage = () => {
   return (
