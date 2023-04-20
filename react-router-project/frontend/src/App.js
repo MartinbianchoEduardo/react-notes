@@ -37,7 +37,7 @@ function App() {
       children: [
         { path: "/", element: <HomePage /> },
         {
-          path: "/events",
+          path: "events",
           element: <EventRoot />,
           children: [
             { path: "", element: <EventsPage /> },
