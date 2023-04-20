@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import classes from "./MainNav.module.css";
 
 const MainNav = (props) => {
@@ -7,13 +7,35 @@ const MainNav = (props) => {
       <nav>
         <ul className={classes.list}>
           <li>
-            <Link to="/">Home</Link>
+            <NavLink
+              to="/"
+              //this below will make the link of the selected route as active
+              className={({ isActive }) =>
+                isActive ? classes.active : undefined
+              }
+            >
+              Home
+            </NavLink>
           </li>
           <li>
-            <Link to="/products">Products</Link>
+            <NavLink
+              to="/products"
+              className={({ isActive }) =>
+                isActive ? classes.active : undefined
+              }
+            >
+              Products
+            </NavLink>
           </li>
           <li>
-            <Link to="/adasd">Error</Link>
+            <NavLink
+              to="/adasd"
+              className={({ isActive }) =>
+                isActive ? classes.active : undefined
+              }
+            >
+              Error
+            </NavLink>
           </li>
         </ul>
       </nav>
