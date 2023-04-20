@@ -5,6 +5,7 @@ import EventDetailPage from "./pages/EventDetailPage";
 import NewEventPage from "./pages/NewEventPage";
 import EditEventPage from "./pages/EditEventPage";
 import Root from "./pages/Root";
+import EventRoot from "./pages/EventRoot";
 
 // Challenge / Exercise
 
@@ -35,10 +36,16 @@ function App() {
       element: <Root />,
       children: [
         { path: "/", element: <HomePage /> },
-        { path: "/events", element: <EventsPage /> },
-        { path: "/events/:id", element: <EventDetailPage /> },
-        { path: "/events/new", element: <NewEventPage /> },
-        { path: "/events/:id/edit", element: <EditEventPage /> },
+        {
+          path: "/events",
+          element: <EventRoot />,
+          children: [
+            { path: "", element: <EventsPage /> },
+            { path: ":id", element: <EventDetailPage /> },
+            { path: "new", element: <NewEventPage /> },
+            { path: ":id/edit", element: <EditEventPage /> },
+          ],
+        },
       ],
     },
   ]);

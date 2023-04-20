@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import EventItem from "../components/EventItem";
+// import EventItem from "../components/EventItem";
 
 const EventsPage = () => {
   const EVENTS = [
