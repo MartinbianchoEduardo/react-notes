@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import EventItem from "../components/EventItem";
 
 const EventsPage = () => {
@@ -17,9 +18,16 @@ const EventsPage = () => {
     <>
       <h1>Events Page</h1>
       <ul>
-        {EVENTS.map((e) => (
-          <EventItem event={e} />
-        ))}
+        {EVENTS.map((e) => {
+          return (
+            <li key={e.id}>
+              <Link to={`/events/${e.id}`}>{e.title}</Link>
+              <p>Date: {e.date}</p>
+              <img src={e.image} alt="event" />
+              <p>{e.description}</p>
+            </li>
+          );
+        })}
       </ul>
     </>
   );
@@ -28,16 +36,9 @@ const EventsPage = () => {
 /* <>
       <h1>Events Page</h1>
       <ul>
-        {EVENTS.map((e) => {
-          return (
-            <>
-              <h2>{e.title}</h2>
-              <p>Date: {e.date}</p>
-              <img src={e.image} alt="event" />
-              <p>{e.description}</p>
-            </>
-          );
-        })}
+        {EVENTS.map((e) => (
+          <EventItem event={e} />
+        ))}
       </ul>
     </> */
 
