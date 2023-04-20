@@ -20,6 +20,7 @@ const MainNav = (props) => {
           <li>
             <NavLink
               to="/products"
+              end
               className={({ isActive }) =>
                 isActive ? classes.active : undefined
               }
