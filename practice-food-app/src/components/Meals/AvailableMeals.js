@@ -1,6 +1,7 @@
 import classes from "./AvailableMeals.module.css";
 import MealItem from "./MealItem/MealItem";
 import Card from "../UI/Card";
+import { useEffect, useState } from "react";
 
 const DUMMY_MEALS = [
   {
@@ -30,7 +31,37 @@ const DUMMY_MEALS = [
 ];
 
 const AvailableMeals = () => {
-  const mealsList = DUMMY_MEALS.map((meal) => (
+  const [meals, setMeals] = useState([]);
+
+  //useEffect so this is called every time the component is loaded
+  useEffect(() => {
+    //remember, the callback to useEffect must not be turned into an async function
+    //this callback function may return a cleanup function which can be executed
+    //this cleanup function must run synchronously\
+    const fetchMeals = async () => {
+      const response = await fetch("backend-server-url");
+      const data = await response.json();
+
+      //transform objects into an array
+      const loadedMeals = [];
+
+      for (const key in data) {
+        loadedMeals.push({
+          id: key,
+          name: data[key].name,
+          description: data[key].description,
+          price: data[key].price,
+        });
+      }
+
+      setMeals(loadedMeals);
+    };
+
+    //so this is fine
+    fetchMeals();
+  }, []);
+
+  const mealsList = meals.map((meal) => (
     <MealItem
       key={meal.id}
       id={meal.id}
