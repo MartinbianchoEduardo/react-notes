@@ -45,6 +45,10 @@ function App() {
               path: "",
               element: <EventsPage />,
               loader: eventsLoader,
+              //the laoder function will be called as
+              //soon as a route transition is initiated
+              //a loading feedback to the user can be
+              //placed using the useNavigation (did it in root.js)
             },
             { path: ":id", element: <EventDetailPage /> },
             { path: "new", element: <NewEventPage /> },
