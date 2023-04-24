@@ -54,6 +54,7 @@ function App() {
                   //react router makes the returned data available in the
                   //rendered component and in any component that needs it
                   //this is made with useLoaderData inside the component
+                  //this data can be used by siblings and children elements
                 }
               },
             },
