@@ -35,12 +35,28 @@ function App() {
       path: "",
       element: <Root />,
       children: [
-        { path: "/", element: <HomePage /> },
+        { index: true, path: "/", element: <HomePage /> },
         {
           path: "events",
           element: <EventRoot />,
           children: [
-            { path: "", element: <EventsPage /> },
+            {
+              index: true,
+              path: "",
+              element: <EventsPage />,
+              loader: async () => {
+                const response = await fetch("http://localhost:8080/events");
+
+                if (!response.ok) {
+                } else {
+                  const resData = await response.json();
+                  return resData.events;
+                  //react router makes the returned data available in the
+                  //rendered component and in any component that needs it
+                  //this is made with useLoaderData inside the component
+                }
+              },
+            },
             { path: ":id", element: <EventDetailPage /> },
             { path: "new", element: <NewEventPage /> },
             { path: ":id/edit", element: <EditEventPage /> },

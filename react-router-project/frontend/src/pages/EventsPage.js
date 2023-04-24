@@ -1,45 +1,12 @@
-import { Link } from "react-router-dom";
-// import EventItem from "../components/EventItem";
+import { useLoaderData } from "react-router-dom";
 
-const EventsPage = () => {
-  const EVENTS = [
-    {
-      id: "e1",
-      title: "A dummy event",
-      date: "2023-02-22",
-      image:
-        "https://blog.hubspot.de/hubfs/Germany/Blog_images/Optimize_Marketing%20Events%20DACH%202021.jpg",
-      description:
-        "Join this amazing event and connect with fellow developers.",
-    },
-  ];
+import EventsList from "../components/EventsList";
 
-  return (
-    <>
-      <h1>Events Page</h1>
-      <ul>
-        {EVENTS.map((e) => {
-          return (
-            <li key={e.id}>
-              <Link to={`/events/${e.id}`}>{e.title}</Link>
-              <p>Date: {e.date}</p>
-              <img src={e.image} alt="event" />
-              <p>{e.description}</p>
-            </li>
-          );
-        })}
-      </ul>
-    </>
-  );
-};
+function EventsPage() {
+  const events = useLoaderData();
+  //events will be the returned value from the loader function in the App
 
-/* <>
-      <h1>Events Page</h1>
-      <ul>
-        {EVENTS.map((e) => (
-          <EventItem event={e} />
-        ))}
-      </ul>
-    </> */
+  return <EventsList events={events} />;
+}
 
 export default EventsPage;
