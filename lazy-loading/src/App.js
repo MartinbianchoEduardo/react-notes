@@ -1,13 +1,14 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import BlogPage, { loader as postsLoader } from './pages/Blog';
-import HomePage from './pages/Home';
-import PostPage, { loader as postLoader } from './pages/Post';
-import RootLayout from './pages/Root';
+// import BlogPage, { loader as postsLoader } from './pages/Blog';
+// removed import above to implement lazy loading
+import HomePage from "./pages/Home";
+import PostPage, { loader as postLoader } from "./pages/Post";
+import RootLayout from "./pages/Root";
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <RootLayout />,
     children: [
       {
@@ -15,10 +16,10 @@ const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: 'posts',
+        path: "posts",
         children: [
           { index: true, element: <BlogPage />, loader: postsLoader },
-          { path: ':id', element: <PostPage />, loader: postLoader },
+          { path: ":id", element: <PostPage />, loader: postLoader },
         ],
       },
     ],
