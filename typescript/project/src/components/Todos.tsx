@@ -2,20 +2,21 @@
 //" this FC type is a generic amd I'm using the <> to define the concrete type I want
 //which is my own props object where I describe my own props fot this specific Functional Component
 
-import Todo from "../models/todo";
+import { useContext } from "react";
 import TodoItem from "./TodoItem";
+import { TodosContext } from "../store/todos-context";
 
 //diferent functional components (FCs) have different props definitions (thats why it is a generic) "
-const Todos: React.FC<{ items: Todo[]; onRemoveTodo: (id: string) => void }> = (
-  props
-) => {
+const Todos: React.FC = () => {
+  const todosCtx = useContext(TodosContext);
+
   return (
     <ul>
-      {props.items.map((e) => (
+      {todosCtx.items.map((e) => (
         <TodoItem
           key={e.id}
           text={e.text}
-          onRemoveTodo={props.onRemoveTodo.bind(null, e.id)}
+          onRemoveTodo={todosCtx.removeTodo.bind(null, e.id)}
         />
       ))}
     </ul>

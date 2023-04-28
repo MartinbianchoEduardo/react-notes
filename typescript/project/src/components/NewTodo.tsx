@@ -1,9 +1,12 @@
-import { useRef } from "react";
+import { useRef, useContext } from "react";
+import { TodosContext } from "../store/todos-context";
 
 //NewTodo will receive a function as prop, so we use this syntax ( propName: () => void )
 //void here because this onAddTodo function returns nothing
 //and we need to specify the parameters as well
-const NewTodo: React.FC<{ onAddTodo: (text: string) => void }> = (props) => {
+const NewTodo: React.FC = () => {
+  const todosCtx = useContext(TodosContext);
+
   //we need to tell which type of data this ref will get
   //thats why useRef is a generic by default
   //in this case we want to store an input element (so is HTMLInputElement - if it was a button: HTMLButtonElement and os on)
@@ -28,7 +31,7 @@ const NewTodo: React.FC<{ onAddTodo: (text: string) => void }> = (props) => {
       return;
     }
 
-    props.onAddTodo(enteredText);
+    todosCtx.addTodo(enteredText);
   };
 
   return (
