@@ -1,6 +1,7 @@
 import Todos from "./components/Todos";
+import Todo from "./models/todo";
 
-const todos = ["Learn React", "Learn TypeScript"];
+const todos = [new Todo("Learn React"), new Todo("Learn JavaScript")];
 
 function App() {
   return (
