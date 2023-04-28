@@ -1,6 +1,9 @@
 import { useRef } from "react";
 
-const NewTodo = () => {
+//NewTodo will receive a function as prop, so we use this syntax ( propName: () => void )
+//void here because this onAddTodo function returns nothing
+//and we need to specify the parameters as well
+const NewTodo: React.FC<{ onAddTodo: (text: string) => void }> = (props) => {
   //we need to tell which type of data this ref will get
   //thats why useRef is a generic by default
   //in this case we want to store an input element (so is HTMLInputElement - if it was a button: HTMLButtonElement and os on)
@@ -24,6 +27,8 @@ const NewTodo = () => {
       //throw error
       return;
     }
+
+    props.onAddTodo(enteredText);
   };
 
   return (
