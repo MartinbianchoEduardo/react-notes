@@ -6,11 +6,17 @@ import Todo from "../models/todo";
 import TodoItem from "./TodoItem";
 
 //diferent functional components (FCs) have different props definitions (thats why it is a generic) "
-const Todos: React.FC<{ items: Todo[] }> = (props) => {
+const Todos: React.FC<{ items: Todo[]; onRemoveTodo: (id: string) => void }> = (
+  props
+) => {
   return (
     <ul>
       {props.items.map((e) => (
-        <TodoItem key={e.id} text={e.text} />
+        <TodoItem
+          key={e.id}
+          text={e.text}
+          onRemoveTodo={props.onRemoveTodo.bind(null, e.id)}
+        />
       ))}
     </ul>
   );

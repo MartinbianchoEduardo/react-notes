@@ -16,10 +16,17 @@ function App() {
     });
   };
 
+  const removeTodoHandler = (clickedTodoId: string) => {
+    setTodos((prevTodos) => {
+      //keep all todos with ids different than the one we want to remove
+      return prevTodos.filter((todo) => todo.id !== clickedTodoId);
+    });
+  };
+
   return (
     <div className="App">
       <NewTodo onAddTodo={addTodoHandler} />
-      <Todos items={todos} />
+      <Todos items={todos} onRemoveTodo={removeTodoHandler} />
     </div>
   );
 }
