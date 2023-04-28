@@ -3,13 +3,14 @@
 //which is my own props object where I describe my own props fot this specific Functional Component
 
 import Todo from "../models/todo";
+import TodoItem from "./TodoItem";
 
 //diferent functional components (FCs) have different props definitions (thats why it is a generic) "
 const Todos: React.FC<{ items: Todo[] }> = (props) => {
   return (
     <ul>
       {props.items.map((e) => (
-        <li key={e.id}>{e.text}</li>
+        <TodoItem key={e.id} text={e.text} />
       ))}
     </ul>
   );
